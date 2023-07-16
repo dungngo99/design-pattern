@@ -1,5 +1,7 @@
 package com.design.pattern.learnn.Adapter;
 
+import java.util.Objects;
+
 public class AudioPlayer implements MediaPlayer {
 
   AudioAdapter audioAdapter;
@@ -15,6 +17,10 @@ public class AudioPlayer implements MediaPlayer {
     if (audioType.equals("mp3")) {
       System.out.println("Play mp3: " + fileName);
     } else {
+      if (Objects.isNull(audioAdapter)) {
+        System.out.println("This audio cannot play " + audioType);
+        return;
+      }
       audioAdapter.play(audioType, fileName);
     }
   }
